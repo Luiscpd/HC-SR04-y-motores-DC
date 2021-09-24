@@ -47,64 +47,71 @@ void loop() {
   } 
   
    if (distancia <= 25 && distancia >= 2){ 
-    digitalWrite(13, 1);                // Si la distancia esta entre 2 y 25 en alto pin 13
+     
+      digitalWrite(13, 1);                // Si la distancia esta entre 2 y 25 en alto pin 13
+      valor=digitalRead(13);             // Lee el estado del pin 13
+        if (valor==HIGH){                
+          analogWrite(MotorA,x=1);        // Si pin 13 esta en alto pin 3 manda un señal PWM al 0%
+          analogWrite(MotorB,x=1);        // Si pin 13 esta en alto pin 5 manda un señal PWM al 0% 
+       delay(10);
+    }
+    
+        if (valor==LOW) {
+          analogWrite(MotorA,x=0);        // Si pin 13 esta en bajo pin 3 manda un señal PWM al 0%
+          analogWrite(MotorB,x=0);        // Si pin 13 esta en bajo pin 5 manda un señal PWM al 0% 
+          delay(10);
+      valor=0; 
+      }
    }
-
-   valor=digitalRead(13);             // Lee el estado del pin 13
-    if (valor==HIGH){                
-    analogWrite(MotorA,x=1);        // Si pin 13 esta en alto pin 3 manda un señal PWM al 0%
-    analogWrite(MotorB,x=1);        // Si pin 13 esta en alto pin 5 manda un señal PWM al 0% 
+   
+   if (distancia <= 50 && distancia >= 26){
+      
+      digitalWrite(12, 1);                 // Si distancia esta entre 26 y 50 en alto pin 12
+      valor=digitalRead(12);            // Lee el estado del pin 12
+        if (valor==HIGH){
+        analogWrite(MotorA,x=75);          // Si pin 12 esta en alto pin 3 manda una señal PWM al 50%
+        analogWrite(MotorB,x=75);          // Si pin 12 esta en alto pin 5 manda una señal PWM al 50%  
       delay(10);
     }
     
-    if (valor==LOW) {
-      analogWrite(MotorA,x=0);        // Si pin 13 esta en bajo pin 3 manda un señal PWM al 0%
-      analogWrite(MotorB,x=0);        // Si pin 13 esta en bajo pin 5 manda un señal PWM al 0% 
+       if (valor==LOW) {
+         analogWrite(MotorA,x=0);        // Si pin 12 esta en bajo pin 3 manda una señal PWM al 0%
+         analogWrite(MotorB,x=0);        // Si pin 12 esta en bajo pin 5 manda una señal PWM al 0% 
       delay(10);
-      }
-
-  
-   if (distancia <= 50 && distancia >= 26){
-    digitalWrite(12, 1);                 // Si distancia esta entre 26 y 50 en alto pin 12
-     }
+      valor=0; 
+        } 
+    }
   
     else {
     digitalWrite(12, 0);               // Si distancia no esta entre 26 y 50 en bajo el pin 12
     }
 
-   valor=digitalRead(12);            // Lee el estado del pin 12
-    if (valor==HIGH){
-    analogWrite(MotorA,x=127);          // Si pin 12 esta en alto pin 3 manda una señal PWM al 50%
-    analogWrite(MotorB,x=127);          // Si pin 12 esta en alto pin 5 manda una señal PWM al 50%  
-      delay(10);
-    }
-    
-    if (valor==LOW) {
-      analogWrite(MotorA,x=0);        // Si pin 12 esta en bajo pin 3 manda una señal PWM al 0%
-      analogWrite(MotorB,x=0);        // Si pin 12 esta en bajo pin 5 manda una señal PWM al 0% 
-      delay(10);
-    }
 
-  
+
+
    if (distancia <= 100 && distancia >= 51){
-    digitalWrite(11, 1);              // Si distancia esta entre 51 y 100 en alto pin 11
-     }
+   
+      digitalWrite(11, 1);              // Si distancia esta entre 51 y 100 en alto pin 11
+      valor=digitalRead(11);
+        if (valor==HIGH){
+         analogWrite(MotorA,x=200);          // Si pin 12 esta en alto pin 3 manda una señal PWM al 75%       
+         analogWrite(MotorB,x=200);          // Si pin 12 esta en alto pin 5 manda una señal PWM al 75% 
+      delay(10);
+      }
+      
+       if (valor==LOW) {
+         analogWrite(MotorA,x=0);        // Si pin 12 esta en bajo pin 3 manda una señal PWM al 0%
+         analogWrite(MotorB,x=0);        // Si pin 12 esta en bajo pin 5 manda una señal PWM al 0% 
+      delay(10);
+       valor=0; 
+       }   
+  }
   
    else {
     digitalWrite(11, 0);               // Si distancia no esta entre 51 y 100 en bajo pin 11 
     }
-  
-   valor=digitalRead(11);
-    if (valor==HIGH){
-      analogWrite(MotorA,x=190);          // Si pin 12 esta en alto pin 3 manda una señal PWM al 75%       
-      analogWrite(MotorB,x=190);          // Si pin 12 esta en alto pin 5 manda una señal PWM al 75% 
-      delay(10);
-      }
+
+
       
-    if (valor==LOW) {
-      analogWrite(MotorA,x=0);        // Si pin 12 esta en bajo pin 3 manda una señal PWM al 0%
-      analogWrite(MotorB,x=0);        // Si pin 12 esta en bajo pin 5 manda una señal PWM al 0% 
-      delay(10);
-      }
   delay(400);                                // Espera 400ms para que se logre ver la distancia en la consola
 }
